@@ -10,6 +10,7 @@ describe('AsynchronousComponentComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ AsynchronousComponentComponent ],
+      imports: [HttpClientTestingModule] // Para testes que requisições e simular chamadas HTTP
     })
     .compileComponents();
 
