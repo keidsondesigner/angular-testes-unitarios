@@ -10,7 +10,7 @@ describe('FillFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ FillFormComponent ],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, FormsModule],
     })
     .compileComponents();
 
