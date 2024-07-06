@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 
 describe('SpyonServiceService', () => {
   let service: SpyonServiceService; // criado a variável e Tipando com o tipo SpyonServiceService
+  const logger = jasmine.createSpy('logger');
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,4 +32,11 @@ describe('SpyonServiceService', () => {
       expect(users).toEqual(MOCK_USERS);
     })
   })
+
+  it('Deve criar método logger', () => {
+    logger('Login efetuado com sucesso!');
+    expect(logger).toHaveBeenCalledTimes(1);
+    expect(logger).toHaveBeenCalledWith('Login efetuado com sucesso!');
+  });
+
 });
