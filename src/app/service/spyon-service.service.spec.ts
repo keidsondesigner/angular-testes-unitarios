@@ -41,15 +41,16 @@ describe('SpyonServiceService', () => {
   });
 
   it('Deve criar métodos name, email e age', () => {
-    status.name = 'Danilo';
-    status.email = 'danilodev.silva@gmail.com';
-    status.age = '30';
-    expect(status.name).toEqual('Danilo');
+    status.name('Danilo');
+    status.email('danilodev.silva@gmail.com');
+    status.age(30);
+
     expect(status.name).toHaveBeenCalledTimes(1);
-    expect(status.email).toEqual('danilodev.silva@gmail.com');
+    expect(status.name).toHaveBeenCalledWith('Danilo');
     expect(status.email).toHaveBeenCalledTimes(1);
-    expect(status.age).toEqual('30');
+    expect(status.email).toHaveBeenCalledWith('danilodev.silva@gmail.com');
     expect(status.age).toHaveBeenCalledTimes(1);
+    expect(status.age).toHaveBeenCalledWith(30);
   });
 
 });
