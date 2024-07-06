@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 describe('SpyonServiceService', () => {
   let service: SpyonServiceService; // criado a variável e Tipando com o tipo SpyonServiceService
   const logger = jasmine.createSpy('logger');
+  const status = jasmine.createSpyObj('service', ['name', 'email', 'age']);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,6 +38,18 @@ describe('SpyonServiceService', () => {
     logger('Login efetuado com sucesso!');
     expect(logger).toHaveBeenCalledTimes(1);
     expect(logger).toHaveBeenCalledWith('Login efetuado com sucesso!');
+  });
+
+  it('Deve criar métodos name, email e age', () => {
+    status.name = 'Danilo';
+    status.email = 'danilodev.silva@gmail.com';
+    status.age = '30';
+    expect(status.name).toEqual('Danilo');
+    expect(status.name).toHaveBeenCalledTimes(1);
+    expect(status.email).toEqual('danilodev.silva@gmail.com');
+    expect(status.email).toHaveBeenCalledTimes(1);
+    expect(status.age).toEqual('30');
+    expect(status.age).toHaveBeenCalledTimes(1);
   });
 
 });
