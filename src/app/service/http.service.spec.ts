@@ -137,5 +137,17 @@ describe('HttpService', () => {
     req.flush(MOCK_PAYLOAD); // flush() Simula a resposta do retorno da chamada POST
   });
 
+  it('Deve realizar chamada DELETE para exculír um usuário', () => {
+    const id = 2;
 
+    service.deleteUser(id).subscribe(res => {
+      expect(res).toBe({});
+    });
+
+    const req = htppTestingController.expectOne(`${url}/users/${id}`);
+
+    expect(req.request.method).toBe('DELETE');
+    expect(req.request.url).toBe(`${url}/users/${id}`);
+    req.flush({}); // flush() Simula a resposta do retorno da chamada POST
+  });
 });
