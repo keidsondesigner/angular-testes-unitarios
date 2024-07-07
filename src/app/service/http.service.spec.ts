@@ -20,7 +20,7 @@ describe('HttpService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('Deve realizar chamada GET por id', () => {
+  it('Deve realizar chamada GET para listar um usuário por id', () => {
     const id = 3;
     const MOCK_USER = {
       id: 3,
@@ -38,5 +38,32 @@ describe('HttpService', () => {
     expect(req.request.method).toBe('GET');
     expect(req.request.url).toBe(`${url}/users/${id}`);
     req.flush(MOCK_USER); // flush() Simula a resposta do retorno da chamada GET
+  });
+
+  it('Deve realizar chamada GET para listar todos os usuários', () => {
+    const MOCK_USERS = [
+      {
+        id: 3,
+        name: "Danilo",
+        email: "danilo@gmail.com",
+        age: "30",
+      },
+      {
+        id: 4,
+        name: "Arthur",
+        email: "arthur@gmail.com",
+        age: "7",
+      }
+    ];
+
+    service.getUsers().subscribe(res => {
+      expect(res).toEqual(MOCK_USERS);
+    });
+
+    const req = htppTestingController.expectOne(`${url}/users`);
+
+    expect(req.request.method).toBe('GET');
+    expect(req.request.url).toBe(`${url}/users`);
+    req.flush(MOCK_USERS); // flush() Simula a resposta do retorno da chamada GET
   });
 });
