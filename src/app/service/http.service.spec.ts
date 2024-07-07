@@ -66,4 +66,22 @@ describe('HttpService', () => {
     expect(req.request.url).toBe(`${url}/users`);
     req.flush(MOCK_USERS); // flush() Simula a resposta do retorno da chamada GET
   });
+
+  it('Deve gerar erro 500 ou listar todos os usuários', () => {
+    service.getUsers().subscribe({
+      error: (err) => {
+        expect(err.status).toBe(500);
+      }
+    });
+
+    const req = htppTestingController.expectOne(`${url}/users`);
+
+    expect(req.request.method).toBe('GET');
+    expect(req.request.url).toBe(`${url}/users`);
+
+    req.flush('Server error', {
+      status: 500,
+      statusText: 'Internal Server Error'
+    });
+  });
 });
