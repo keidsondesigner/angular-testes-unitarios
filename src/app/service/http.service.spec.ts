@@ -110,4 +110,32 @@ describe('HttpService', () => {
     expect(req.request.url).toBe(`${url}/users`);
     req.flush(MOCK_PAYLOAD); // flush() Simula a resposta do retorno da chamada POST
   });
+
+  it('Deve realizar chamada PUT para atualizar um usuário', () => {
+    const id = 1;
+
+    const MOCK_USER = {
+      "name": "Keidson",
+      "email": "danilo@gmail.com",
+      "age": "33",
+    }
+
+    const MOCK_PAYLOAD = {
+      "name": "Keidson editado",
+      "email": "danilo@gmail.com",
+      "age": "33",
+    }
+
+    service.putUser(id, MOCK_USER).subscribe(res => {
+      expect(res).toBe(MOCK_PAYLOAD);
+    });
+
+    const req = htppTestingController.expectOne(`${url}/users/${id}`);
+
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.url).toBe(`${url}/users/${id}`);
+    req.flush(MOCK_PAYLOAD); // flush() Simula a resposta do retorno da chamada POST
+  });
+
+
 });
