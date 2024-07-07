@@ -84,4 +84,30 @@ describe('HttpService', () => {
       statusText: 'Internal Server Error'
     });
   });
+
+  it('Deve realizar chamada POST para cadastrar um usuário', () => {
+    const MOCK_USER = {
+      "id": 45,
+      "name": "Keidson",
+      "email": "danilo@gmail.com",
+      "age": "33",
+    }
+
+    const MOCK_PAYLOAD = {
+      "id": 45,
+      "name": "Keidson",
+      "email": "danilo@gmail.com",
+      "age": "33",
+    }
+
+    service.postUser(MOCK_USER).subscribe(res => {
+      expect(res).toBe(MOCK_PAYLOAD);
+    });
+
+    const req = htppTestingController.expectOne(`${url}/users`);
+
+    expect(req.request.method).toBe('POST');
+    expect(req.request.url).toBe(`${url}/users`);
+    req.flush(MOCK_PAYLOAD); // flush() Simula a resposta do retorno da chamada POST
+  });
 });
