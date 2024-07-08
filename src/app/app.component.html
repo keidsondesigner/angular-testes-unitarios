@@ -9,11 +9,6 @@
 
 <app-fill-form></app-fill-form>
 
-<app-input-output
-  [user]="user"
-  (userMessage)="getUserMessage($event)">
-</app-input-output>
-
 <app-auto-detect-change></app-auto-detect-change> -->
 
 <!-- <app-concepts-tests></app-concepts-tests> -->
@@ -57,3 +52,8 @@
   [items]="menuItems" label="Menu" (selected)="onMenuItemSelected($event)">
 
 </app-menu-dropdown> -->
+
+<app-input-output
+  [user]="user"
+  (userMessage)="getUserMessage($event)">
+</app-input-output>
