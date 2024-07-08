@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AsynchronousComponentComponent } from './asynchronous-component.component';
 import { of } from 'rxjs';
 import { HttpService } from '../service/http.service';
+import { By } from '@angular/platform-browser';
 
 describe('AsynchronousComponentComponent', () => {
   let component: AsynchronousComponentComponent;
@@ -48,5 +49,22 @@ describe('AsynchronousComponentComponent', () => {
     component.getUsers(); // Chamar o metodo getUsers();
 
     expect(component.data).toEqual(MOCK_USERS); // data é quem recebe a resposta através do subscribe;
+  });
+
+  it('Deve logar usuário', (done: DoneFn) => {
+    const loggedOut: HTMLDivElement =  fixture.nativeElement.querySelector('.logged-out');
+
+    let spy = spyOn(http, 'isAuthenticated').and.returnValue(Promise.resolve(true));
+    component.isAuthenticaded();
+
+    spy.calls.mostRecent().returnValue.then(() => {
+      fixture.detectChanges();
+      const loggedIn: HTMLDivElement =  fixture.nativeElement.querySelector('.logged');
+
+      expect(loggedIn.textContent).toBe('Logado');
+      done(); // Finaliza os testes assíncronos com done();
+    });
+
+    expect(loggedOut.textContent).toBe('Deslogado');
   });
 });
