@@ -1,9 +1,13 @@
 import { HttpPipe } from './http.pipe';
 
 describe('HttpPipe', () => {
-  const pipe = new HttpPipe();
+  const pipe = new HttpPipe(); // meu Pipe
 
   it('create an instance', () => {
     expect(pipe).toBeTruthy();
+  });
+
+  it('Deve transformar http em https', () => {
+    expect(pipe.transform('http://google.com')).toBe('https://google.com');
   });
 });
