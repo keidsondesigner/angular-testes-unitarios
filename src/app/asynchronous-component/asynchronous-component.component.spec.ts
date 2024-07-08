@@ -67,4 +67,19 @@ describe('AsynchronousComponentComponent', () => {
 
     expect(loggedOut.textContent).toBe('Deslogado');
   });
+
+  it('Deve logar usuário com whenStable', async () => {
+    const loggedOut: HTMLDivElement =  fixture.nativeElement.querySelector('.logged-out');
+    expect(loggedOut.textContent).toBe('Deslogado');
+
+    spyOn(http, 'isAuthenticated').and.returnValue(Promise.resolve(true));
+    component.isAuthenticaded();
+
+    await fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const loggedIn: HTMLDivElement =  fixture.nativeElement.querySelector('.logged');
+
+      expect(loggedIn.textContent).toBe('Logado');
+    });
+  });
 });
