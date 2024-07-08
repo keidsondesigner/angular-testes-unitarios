@@ -36,9 +36,9 @@ export class AsynchronousComponentComponent implements OnInit {
   }
 
   defineValue() {
-    this.name = 'Danilo';
+    this.name = 'Ana';
     setTimeout(() => {
-      this.name = 'Jessica'
+      this.name = 'Karol'
     }, 100)
   }
 }

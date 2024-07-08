@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { AsynchronousComponentComponent } from './asynchronous-component.component';
 import { of } from 'rxjs';
@@ -82,4 +82,11 @@ describe('AsynchronousComponentComponent', () => {
       expect(loggedIn.textContent).toBe('Logado');
     });
   });
+
+  it('Deve logar usuário com fakeAsync', fakeAsync(() => {
+    component.defineValue();
+
+    tick(500);
+    expect(component.name).toBe('Karol');
+  }));
 });
