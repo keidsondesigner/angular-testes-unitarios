@@ -21,4 +21,13 @@ describe('HandleEventComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('Deve mostrar um emoji ao clicar no botão', () => {
+    let h1 = fixture.nativeElement.querySelector('h1');
+    let button = fixture.nativeElement.querySelector('button');
+
+    button.click(); // disparando evento de click
+
+    fixture.detectChanges();
+    expect(h1.textContent).toBe('👨‍🎓');
+  });
 });
