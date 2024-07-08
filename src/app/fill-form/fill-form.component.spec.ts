@@ -22,4 +22,13 @@ describe('FillFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Deve preencher campos do formulário', () => {
+    let input = fixture.nativeElement.querySelector('input');
+
+    input.value = 'keidson';
+    input.dispatchEvent(new Event('input'));
+
+    expect(input.value).toBe('keidson');
+  });
 });
