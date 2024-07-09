@@ -54,4 +54,20 @@ describe('FormLoginComponent', () => {
     const result = component.isValidForm();
     expect(result).toBeFalsy();
   });
+
+  it('Deve habilitar o botão, quando formulário for válido', () => {
+    // preencher os campos do formulário
+    component.form.controls['email'].setValue('keidsondev@gmail.com');
+    component.form.controls['password'].setValue('123');
+
+    fixture.detectChanges();
+
+    const btn = fixture.debugElement.nativeElement.querySelector('.btn-login');
+    // verificar se btn não está desabilitado
+    expect(btn.disabled).toBeFalse();
+
+    // verificar se o formulário é válido
+    const result = component.isValidForm();
+    expect(result).toBeTrue();
+  });
 });
