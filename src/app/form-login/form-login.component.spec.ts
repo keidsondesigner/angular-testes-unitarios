@@ -32,4 +32,16 @@ describe('FormLoginComponent', () => {
     const result = component.isValidForm();
     expect(result).toBeFalsy();
   });
+
+  it('Deve retornar formulário válido', () => {
+    // preencher os campos do formulário
+    component.form.controls['email'].setValue('keidsondev@gmail.com');
+    component.form.controls['password'].setValue('123');
+
+    fixture.detectChanges();
+
+    // verificar se o formulário é válido
+    const result = component.isValidForm();
+    expect(result).toBeTruthy();
+  });
 });
