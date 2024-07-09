@@ -14,5 +14,4 @@ export class HoverFocusDirective {
   @HostListener('mouseout') onLeave() {
     this.backgroundColor = 'inherit';
   }
-
 }
