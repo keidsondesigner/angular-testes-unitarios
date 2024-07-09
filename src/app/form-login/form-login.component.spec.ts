@@ -12,7 +12,10 @@ describe('FormLoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ FormLoginComponent ],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [
+        ReactiveFormsModule,
+        HttpClientTestingModule
+      ],
     })
     .compileComponents();
 
@@ -23,5 +26,10 @@ describe('FormLoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Deve retornar formulário inválido', () => {
+    const result = component.isValidForm();
+    expect(result).toBeFalsy();
   });
 });
