@@ -44,4 +44,14 @@ describe('FormLoginComponent', () => {
     const result = component.isValidForm();
     expect(result).toBeTruthy();
   });
+
+  it('Deve desabilitar o botão, quando formulário for inválido', () => {
+    const btn = fixture.debugElement.nativeElement.querySelector('.btn-login');
+    // verificar se btn está desabilitado
+    expect(btn.disabled).toBeTrue();
+
+    // verificar se o formulário é válido
+    const result = component.isValidForm();
+    expect(result).toBeFalsy();
+  });
 });
