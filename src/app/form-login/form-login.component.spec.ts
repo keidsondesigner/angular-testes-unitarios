@@ -50,7 +50,7 @@ describe('FormLoginComponent', () => {
     // verificar se btn está desabilitado
     expect(btn.disabled).toBeTrue();
 
-    // verificar se o formulário é válido
+    // verificar se o formulário é inválido
     const result = component.isValidForm();
     expect(result).toBeFalsy();
   });
