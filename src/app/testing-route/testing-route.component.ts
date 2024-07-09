@@ -14,7 +14,7 @@ export class TestingRouteComponent implements OnInit {
   }
 
   navigateUrl(url: string) {
-    this.router.navigate([`/${url}`])
+    this.router.navigate([`/${url}`]);
   }
 
 }
