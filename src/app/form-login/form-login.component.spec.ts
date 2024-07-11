@@ -4,10 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from '../service/http.service';
 
 import { FormLoginComponent } from './form-login.component';
+import { of } from 'rxjs';
 
 describe('FormLoginComponent', () => {
   let component: FormLoginComponent;
   let fixture: ComponentFixture<FormLoginComponent>;
+  let service: HttpService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,6 +24,7 @@ describe('FormLoginComponent', () => {
     fixture = TestBed.createComponent(FormLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    service = TestBed.inject(HttpService);
   });
 
   it('should create', () => {
@@ -86,5 +89,26 @@ describe('FormLoginComponent', () => {
     }
 
     expect(component.createPayload('keidsondev@gmail.com', '123')).toEqual(payload)
+  });
+
+  it('Deve realizar o login, ao submeter o formulário para o Service', () => {
+    // preencher os campos do formulário
+    component.form.controls['email'].setValue('keidsondev@gmail.com');
+    component.form.controls['password'].setValue('123');
+
+    fixture.detectChanges();
+
+    let response = {
+      "id": "1",
+      "email": "keidsondev@gmail.com",
+      "password": "123456"
+    }
+
+    let spied = spyOn(service, 'login').and.returnValue(of(response));
+
+    component.isValidForm();
+    component.login();
+
+    expect(spied).toHaveBeenCalledTimes(1);
   });
 });
