@@ -70,4 +70,11 @@ describe('FormLoginComponent', () => {
     const result = component.isValidForm();
     expect(result).toBeTrue();
   });
+
+  it('Deve retornar o valor de um controle do formulário', () => {
+    component.form.controls['email'].setValue('keidsondev@gmail.com');
+    fixture.detectChanges();
+
+    expect(component.getValueControl(component.form, 'email')).toEqual('keidsondev@gmail.com');
+  });
 });
