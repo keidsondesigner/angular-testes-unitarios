@@ -77,4 +77,14 @@ describe('FormLoginComponent', () => {
 
     expect(component.getValueControl(component.form, 'email')).toEqual('keidsondev@gmail.com');
   });
+
+  it('Deve criar dados (payload) para submeter o formulário para api', () => {
+
+    const payload = {
+      email: 'keidsondev@gmail.com',
+      password: '123'
+    }
+
+    expect(component.createPayload('keidsondev@gmail.com', '123')).toEqual(payload)
+  });
 });
