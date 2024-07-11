@@ -16,7 +16,7 @@ describe('FormLoginComponent', () => {
       declarations: [ FormLoginComponent ],
       imports: [
         ReactiveFormsModule,
-        HttpClientTestingModule
+        HttpClientTestingModule // Para testes que requisições e simular chamadas HTTP
       ],
     })
     .compileComponents();
